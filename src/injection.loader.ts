@@ -1,6 +1,7 @@
-import {Loader} from "@leyyo/core";
+import {Loader} from "./decorators";
+import {injectionPool} from "./pool";
 
-@Loader()
+@Loader(injectionPool)
 export class InjectionLoader {
 
 }

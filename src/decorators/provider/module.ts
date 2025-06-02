@@ -1,7 +1,8 @@
-import {EnumLiteral, Func, Obj} from "@leyyo/common";
+import {Dict, EnumLiteral, Func, Obj} from "@leyyo/common";
 import {decoratorPool} from "@leyyo/core";
+
 import {FQN} from "../../internal";
-import {Loader} from "./loader";
+import {Provider, ProviderOpt, ProviderParam} from "./provider";
 
 
 interface O {
@@ -10,10 +11,10 @@ interface O {
 
 export function Module(...resources: Array<Func | Obj>): ClassDecorator {
     return clazz => {
-        cloned.process([clazz], {resources});
+        cloned.process([clazz], {resources, tag: 'module'});
     };
 }
 
 const cloned = decoratorPool
-    .newClone<O>(Module, Loader)
+    .newClone<ProviderOpt, Dict, ProviderParam>(Module, Provider)
     .fqn(FQN);
