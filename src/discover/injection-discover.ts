@@ -30,7 +30,8 @@ export class InjectionDiscover implements InjectionDiscoverLike {
         this.secure = pool.$secure;
 
         lifecycle.onAll(FQN)
-            .before('leyyo.http-api');
+            .after('leyyo.ruler')
+            .before('leyyo.http_api');
 
         lifecycle.onInitialize(FQN, () => this.initialize());
         lifecycle.onValidate(FQN, async () => this.build());
